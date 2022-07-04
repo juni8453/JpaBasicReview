@@ -1,8 +1,6 @@
 package jpa.jpashop.domain;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -23,4 +21,9 @@ public class Member {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private Team team;
+
+    public void addTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);
+    }
 }

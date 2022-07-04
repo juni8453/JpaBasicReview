@@ -1,5 +1,8 @@
 package jpa.jpashop;
 
+
+
+
 import jpa.jpashop.domain.Member;
 import jpa.jpashop.domain.Team;
 
@@ -17,23 +20,31 @@ public class JpaMain {
         tx.begin();
 
         try {
-
             Team team = new Team();
-            team.setName("teamB");
+            team.setName("TeamA");
             em.persist(team);
 
             Member member = new Member();
-            member.setName("memberB");
+            member.setName("MemberA");
 
-            // 연관관계가 존재하는 객체는 JPA 가 자동으로 PK 값을 꺼내서 연관관계의 주인 쪽 FK 값으로 사용
-            member.setTeam(team);
+            // 영속성 컨텍스트에 올라가기 전이든 올라가고 나서든
+            // 위치는 상관 없는 것 같다 ? 내일 질문
+            member.addTeam(team);
             em.persist(member);
+
+            // 연관관계 편의 메서드 사용
+            member.addTeam(team);
+
+            Team findTeam = em.find(Team.class, team.getId());
+            List<Member> members = findTeam.getMembers();
+
+            System.out.println("======================");
+            for (Member m : members) {
+                System.out.println("m.getName() = " + m.getName());
+            }
+            System.out.println("Team 내부 Member 는? : " + findTeam.getMembers().get(0));
+            System.out.println("======================");
             
-            em.flush();
-            em.clear();
-
-
-
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
