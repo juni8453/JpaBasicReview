@@ -1,7 +1,10 @@
 package jpa.jpashop.exdomain;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
+@Getter
 @Entity
 public class Member {
 

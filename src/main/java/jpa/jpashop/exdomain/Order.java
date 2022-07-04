@@ -1,10 +1,13 @@
 package jpa.jpashop.exdomain;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+@Getter
 @Table(name = "ORDERS")
+@Entity
 public class Order {
 
     @Id
@@ -22,3 +25,4 @@ public class Order {
     private Member member;
 
 }
+
