@@ -1,4 +1,4 @@
-package hellojpa;
+package jpa.jpashop.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -7,19 +7,19 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "item_id")
     private Long id;
 
-    @Column(name = "name")
-    private String username;
+    private String name;
 
+    private int price;
+    private int stockQuantity;
 }
-
-
