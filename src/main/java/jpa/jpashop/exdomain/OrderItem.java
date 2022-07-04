@@ -1,8 +1,6 @@
 package jpa.jpashop.exdomain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class OrderItem {
@@ -13,4 +11,12 @@ public class OrderItem {
 
     private int orderPrice;
     private int count;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
 }
