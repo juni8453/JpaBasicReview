@@ -30,7 +30,7 @@ public class JpaMain {
             em.persist(member);
 
             // 연관관계 편의 메서드 사용
-            member.addTeam(team);
+//            member.addTeam(team);
 
             Team findTeam = em.find(Team.class, team.getId());
             List<Member> members = findTeam.getMembers();
