@@ -16,14 +16,6 @@ public class ExMain {
         tx.begin();
 
         try {
-            Member2 member = new Member2();
-            member.setName("memberA");
-            em.persist(member);
-
-            Team2 team = new Team2();
-            team.setName("teamA");
-            team.getMembers().add(team);
-            em.persist(team);
 
             tx.commit();
         } catch (Exception e) {

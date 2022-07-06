@@ -17,31 +17,18 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
 
             Member member = new Member();
-            member.setName("MemberA");
-
-            // 영속성 컨텍스트에 올라가기 전이든 올라가고 나서든
-            // 위치는 상관 없는 것 같다 ? 내일 질문
-            member.addTeam(team);
+            member.setName("member1");
             em.persist(member);
 
-            // 연관관계 편의 메서드 사용
-//            member.addTeam(team);
+            Team team = new Team();
+            team.setName("teamA");
 
-            Team findTeam = em.find(Team.class, team.getId());
-            List<Member> members = findTeam.getMembers();
+            System.out.println("team.getMember().add(member)");
+            team.getMembers().add(member);
+            em.persist(team);
 
-            System.out.println("======================");
-            for (Member m : members) {
-                System.out.println("m.getName() = " + m.getName());
-            }
-            System.out.println("Team 내부 Member 는? : " + findTeam.getMembers().get(0));
-            System.out.println("======================");
-            
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
