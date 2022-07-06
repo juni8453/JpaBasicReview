@@ -2,19 +2,18 @@ package jpa.jpashop.exdomain;
 
 import lombok.Getter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Getter
 @Entity
-public class Member {
+public class Delivery {
 
     @Id
     @GeneratedValue
-    @Column(name = "member_id")
     private Long id;
 
-    private String name;
-    private String city;
     private String street;
     private String zipcode;
 }
